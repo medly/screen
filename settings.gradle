@@ -1,0 +1,5 @@
+rootProject.name = "screen"
+
+include 'base'
+include 'java'
+include 'kotlin'
