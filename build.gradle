@@ -1,47 +1,17 @@
 plugins {
-    id "com.gradle.plugin-publish" version "0.14.0" apply false // not to the root project
+    id "com.medly.inception" version "0.0.2" apply false // not to the root project
 }
 
 
 subprojects {
-    apply plugin: 'groovy-gradle-plugin'
-    apply plugin: 'com.gradle.plugin-publish'
+    apply plugin: 'com.medly.inception'
 
     group = "com.medly.screen"
     description = "Plugin for screening"
 
-    repositories {
-        // automatically allow plugin dependencies to be added from GPP
-        gradlePluginPortal()
-
-        // Also add maven central just in case some non plugin deps are required
-        mavenCentral()
-    }
-
     pluginBundle {
-        website = 'https://github.com/medly/screen'
         vcsUrl = 'https://github.com/medly/screen'
-        description = project.description
         tags = ['screening', 'quality', 'analysis']
-
-        println project.group.toString()
-        println project.name
-
-        mavenCoordinates {
-            groupId = project.group.toString()
-            artifactId = project.name
-            version = project.version.toString()
-        }
-    }
-
-
-    pluginDescriptors { // we are configuring task here, this is not an extension block
-        afterEvaluate { // after this task is evaluated
-            declarations.get().each { PluginDeclaration declaration ->
-                declaration.setDisplayName(declaration.id) // set it to id for now
-                declaration.setDescription(project.description)
-            }
-        }
     }
 }
 
